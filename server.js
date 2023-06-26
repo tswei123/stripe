@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 
@@ -14,7 +13,7 @@ app.use(cors({
 
 const port = process.env.PORT || 3001
 
-app.get('/', (req,res) => {
+app.post('/', (req,res) => {
     res.send('App is live')
 })
 
