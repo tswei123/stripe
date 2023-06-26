@@ -21,7 +21,7 @@ app.get('/', (req,res) => {
     res.send(`App is live in ${port}`)
 })
 
-app.get('/create-payment-intent', async (req, res) => {
+app.post('/create-payment-intent', async (req, res) => {
     try {
         const { email } = req.body;
         const data = await paymentDetails(email);
@@ -33,7 +33,7 @@ app.get('/create-payment-intent', async (req, res) => {
     }
 });
 
-app.get('/refund', async (req,res) => {
+app.post('/refund', async (req,res) => {
     try {
         const { payment_intent, amount }  = req.body;
         console.log(req.body);
