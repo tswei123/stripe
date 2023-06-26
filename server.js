@@ -18,7 +18,7 @@ app.use(cors({
 const port = process.env.PORT || 3001
 
 app.get('/', (req,res) => {
-    res.send('App is live')
+    res.send(`App is live in ${port}`)
 })
 
 app.get('/create-payment-intent', async (req, res) => {
