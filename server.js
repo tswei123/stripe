@@ -15,16 +15,13 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use(express.static('client/build'));
-const path = require('path');
+const port = process.env.PORT || 3001
 
-
-
-app.get('*', (req,res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+app.get('/', (req,res) => {
+    res.send('App is live')
 })
 
-app.post('/create-payment-intent', async (req, res) => {
+app.get('/create-payment-intent', async (req, res) => {
     try {
         const { email } = req.body;
         const data = await paymentDetails(email);
@@ -36,7 +33,7 @@ app.post('/create-payment-intent', async (req, res) => {
     }
 });
 
-app.post('/refund', async (req,res) => {
+app.get('/refund', async (req,res) => {
     try {
         const { payment_intent, amount }  = req.body;
         console.log(req.body);
@@ -74,6 +71,4 @@ app.post('/test', async (req,res) => {
         });
     }
 })
-
-const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`app is running on ${port}`))
