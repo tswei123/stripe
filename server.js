@@ -12,6 +12,12 @@ app.use(cors({
     origin: '*'
 }));
 
+const port = process.env.PORT || 3001
+
+app.get('/', (req,res) => {
+    res.send('App is live')
+})
+
 app.post('/create-payment-intent', async (req, res) => {
     try {
         const { email } = req.body;
@@ -62,4 +68,4 @@ app.post('/test', async (req,res) => {
         });
     }
 })
-app.listen(process.env.PORT || 3001, () => console.log("app is running"))
+app.listen(port, () => console.log(`app is running on ${port}`))
